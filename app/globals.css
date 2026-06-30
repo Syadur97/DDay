@@ -66,6 +66,90 @@ body {
   opacity: 0.9;
 }
 
+/* ---------- Floating flower & love decorations ---------- */
+.decor-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.decor-item {
+  position: absolute;
+  display: inline-block;
+  filter: drop-shadow(0 4px 10px rgba(20, 0, 40, 0.25));
+  animation-name: float-bob;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  opacity: 0.9;
+}
+
+@keyframes float-bob {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(8deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* ---------- Sticker accent on panels ---------- */
+.sticker {
+  display: inline-block;
+  font-size: 2.2rem;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+  animation: sticker-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes sticker-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4) rotate(-15deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .decor-item {
+    font-size: 1.4rem !important;
+  }
+
+  .text-input,
+  .text-area {
+    font-size: 16px; /* prevents iOS Safari auto-zoom on focus */
+  }
+
+  .panel {
+    padding: 2.1rem 1.4rem 1.9rem;
+  }
+
+  .btn-row {
+    flex-direction: column;
+  }
+
+  .btn.primary,
+  .btn.ghost {
+    width: 100%;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .detail-label {
+    width: auto;
+  }
+}
+
 /* ---------- Wizard shell ---------- */
 .wizard {
   z-index: 1;
@@ -358,5 +442,9 @@ body {
     animation: none !important;
     opacity: 1;
     transform: none;
+  }
+  .decor-item,
+  .sticker {
+    animation: none !important;
   }
 }

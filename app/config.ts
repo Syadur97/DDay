@@ -1,7 +1,7 @@
 // Edit this file to set your defaults. Nothing else needs to change.
 
 export const inviteConfig = {
-  fromName: "Saidur",
+  fromName: "Love",
   // Quick-pick place suggestions shown as chips (she can also type her own)
   placeSuggestions: [
     "Sajna Rooftop, Gulshan 2",
