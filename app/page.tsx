@@ -46,7 +46,7 @@ export default function Page() {
 
   return (
     <main className="stage">
-      <div className="stars" aria-hidden="true" />
+      <Decorations />
 
       <div className="wizard">
         {step !== "decline" && (
@@ -63,6 +63,7 @@ export default function Page() {
         {/* Step 1: name */}
         {step === "name" && (
           <Panel>
+            <span className="sticker">🌷</span>
             <p className="eyebrow">A little note from {inviteConfig.fromName}</p>
             <h2>Before anything else — what should I call you?</h2>
             <form
@@ -90,6 +91,7 @@ export default function Page() {
         {/* Step 2: ask */}
         {step === "ask" && (
           <Panel>
+            <span className="sticker">💌</span>
             <p className="eyebrow">Hi {name || "there"}</p>
             <h2>Do you want to go on a date with me?</h2>
             <p className="lede">No pressure — just asking honestly.</p>
@@ -107,6 +109,7 @@ export default function Page() {
         {/* Decline path */}
         {step === "decline" && (
           <Panel>
+            <span className="sticker">🌼</span>
             <div className="rule" />
             <p className="to">For {name || "you"}</p>
             <h2>Thank you for telling me.</h2>
@@ -118,6 +121,7 @@ export default function Page() {
         {/* Step 3: date */}
         {step === "date" && (
           <Panel>
+            <span className="sticker">🌸</span>
             <p className="eyebrow">Step 2 of 4</p>
             <h2>Pick a date that works for you</h2>
             <form
@@ -168,6 +172,7 @@ export default function Page() {
         {/* Step 4: place */}
         {step === "place" && (
           <Panel>
+            <span className="sticker">💐</span>
             <p className="eyebrow">Step 3 of 4</p>
             <h2>Where would you like to go?</h2>
             <form
@@ -216,6 +221,7 @@ export default function Page() {
         {/* Step 5: comments */}
         {step === "comments" && (
           <Panel>
+            <span className="sticker">🌻</span>
             <p className="eyebrow">Step 4 of 4</p>
             <h2>Anything special I should know?</h2>
             <p className="lede">
@@ -255,9 +261,10 @@ export default function Page() {
         {/* Final card */}
         {step === "final" && (
           <Panel>
+            <span className="sticker">💖</span>
             <div className="rule" />
             <p className="to">For {name}</p>
-            <h2>It&apos;s a date.</h2>
+            <h2>It&apos;s a date. 🌷</h2>
             <p className="lede">Here&apos;s everything, all in one place.</p>
 
             <div className="details">
@@ -308,4 +315,39 @@ export default function Page() {
 
 function Panel({ children }: { children: React.ReactNode }) {
   return <section className="panel">{children}</section>;
+}
+
+const DECOR_ITEMS = [
+  { emoji: "🌸", top: "8%", left: "10%", size: "2.4rem", delay: "0s", duration: "9s" },
+  { emoji: "💐", top: "14%", left: "82%", size: "2.6rem", delay: "1.2s", duration: "10s" },
+  { emoji: "🌷", top: "30%", left: "4%", size: "2rem", delay: "2.1s", duration: "8s" },
+  { emoji: "💖", top: "70%", left: "88%", size: "2rem", delay: "0.6s", duration: "7.5s" },
+  { emoji: "🌻", top: "82%", left: "12%", size: "2.2rem", delay: "1.8s", duration: "9.5s" },
+  { emoji: "🌼", top: "20%", left: "92%", size: "1.8rem", delay: "3s", duration: "8.5s" },
+  { emoji: "💌", top: "88%", left: "78%", size: "2rem", delay: "0.9s", duration: "9s" },
+  { emoji: "🌹", top: "50%", left: "94%", size: "2.1rem", delay: "2.6s", duration: "8s" },
+  { emoji: "✨", top: "55%", left: "3%", size: "1.6rem", delay: "1.5s", duration: "7s" },
+  { emoji: "💕", top: "6%", left: "45%", size: "1.7rem", delay: "2.3s", duration: "8.5s" },
+];
+
+function Decorations() {
+  return (
+    <div className="decor-layer" aria-hidden="true">
+      {DECOR_ITEMS.map((item, i) => (
+        <span
+          key={i}
+          className="decor-item"
+          style={{
+            top: item.top,
+            left: item.left,
+            fontSize: item.size,
+            animationDelay: item.delay,
+            animationDuration: item.duration,
+          }}
+        >
+          {item.emoji}
+        </span>
+      ))}
+    </div>
+  );
 }
